@@ -1,37 +1,49 @@
+import utils
+from person import Person
+from bank_account import BankAccount
+
 def main():
-    people = []  # List to store all Person objects
+    person_list = []
 
     while True:
-        # Display menu
-        print("Choose an option:")
+        print("\nChoose an option:")
         print("1. Add a new person")
         print("2. Add an account to a person")
         print("3. Show all balances")
         print("4. Quit")
+        
+        option = input()
 
-        choice = input().strip()
+        if option == "1":
+            new_person = utils.person_data()
+            person_list.append(new_person)
 
-        # Option 1: Add a new person
-        if choice == "1":
-            pass
+        elif option == "2":
+            name_to_find = input("Enter the person's name:\n")
+            target_person = None
+            
+            for p in person_list:
+                if p.name == name_to_find:
+                    target_person = p
+                    break
+                    
+            if target_person:
+                acc_num = int(input("Enter a 4-digit account number:\n"))
+                init_balance = float(input("Enter the initial balance:\n"))
+                account = BankAccount(acc_num, init_balance)
+                target_person.add_account(account)
+            else:
+                print("Person not found.")
 
-        # Option 2: Add an account to an existing person
-        elif choice == "2":
-            pass
+        elif option == "3":
+            if not person_list:
+                print("No data to show.")
+            else:
+                utils.balance_summary(person_list)
 
-        # Option 3: Show all balances
-        elif choice == "3":
-            pass
-
-        # Option 4: Quit
-        elif choice == "4":
+        elif option == "4":
             print("Goodbye!")
             break
 
-        # Invalid input
-        else:
-            print("Invalid option. Please choose 1-4.")
-
 if __name__ == "__main__":
     main()
-
