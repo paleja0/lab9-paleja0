@@ -7,8 +7,8 @@ class Movie:
         self.year = year
 # FREEZE CODE END
     # TODO: Define the __str__ method!
-
-
+def __str__(self):
+        return f"Movie: {self.title} (Directed by {self.director}, {self.year})"
 # FREEZE CODE BEGIN
 if __name__ == "__main__":
     # --- Main Program ---
@@ -20,3 +20,8 @@ if __name__ == "__main__":
     
     # TODO: Construct a Movie object!
     # TODO: Print the object!
+my_movie = Movie(title, director, year)
+    
+    # Aquí lo imprimes. ¡No le agregues .__str__() al final del print!, 
+    # print(my_movie) ya lo hace solito.
+print(my_movie)
